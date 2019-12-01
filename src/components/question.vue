@@ -1,14 +1,11 @@
 <template lang="html">
 <li>
-
 <form v-on:submit.prevent="emitChosenAnswer">
   <h2>{{decodeURIComponent(question.question)}}</h2>
   <input type="radio" v-model="selectedAnswer" value="True">True
   <input type="radio" v-model="selectedAnswer" value="False">False
 <input v-on:click="handleClick" type="submit" value="submit">
-
 </form>
-
 </li>
 </template>
 
@@ -36,7 +33,7 @@ export default {
     emitChosenAnswer(){
       eventBus.$emit("the-result", this.finalResult)
     }
-  }
+  },
 }
 </script>
 
