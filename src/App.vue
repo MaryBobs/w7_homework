@@ -2,13 +2,13 @@
   <div>
   <h2>Quiz</h2>
   <question-list :questions="questions"></question-list>
-  <answer :answer="this.selectedQuestion"></answer>
+  <result :result="this.finalResult"></result>
 </div>
 </template>
 
 <script>
 import QuestionList from "./components/QuestionList.vue"
-import Answer from "./components/Answer.vue"
+import Result from "./components/Answer.vue"
 import {eventBus} from "./main.js"
 
 export default {
@@ -17,25 +17,25 @@ export default {
     return {
     questions: [],
     selectedQuestion: null,
-    selectedAnswer: null
+    finalResult: null
     }
   },
   mounted(){
-    fetch("https://opentdb.com/api.php?amount=10&type=boolean&encode=url3986")
+    fetch("https://opentdb.com/api.php?amount=5&type=boolean&encode=url3986")
     .then(res => res.json())
     .then(data => this.questions = data.results)
 
     eventBus.$on("question-picked", payload => {
       this.selectedQuestion = payload;
 
-      eventBus.$on("answer-selected", payload => {
-        this.selectedAnswer = payload;
+      eventBus.$on("the-result", payload => {
+        this.finalResult = payload;
       })
     })
   },
   components: {
     "question-list": QuestionList,
-    "answer": Answer
+    "result": Result,
   }
 }
 </script>
