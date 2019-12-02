@@ -4,9 +4,9 @@
     <create :categories="categories"></create>
   <div class="q-list">
   <question-list :questions="questions"></question-list>
-  <div class="result">
+
   <result :result="finalResult"></result>
-  </div>
+
 </div>
 </div>
 </template>
@@ -61,8 +61,13 @@ export default {
       fetch(url)
       .then(res => res.json())
       .then(data => this.questions = data.results)
-    }
+    },
+  computed: {
+      resultClass: function(){
+        return this.finalResult === correct ? "correct" : "incorrect";
+      }
   }
+}
 
 }
 </script>
@@ -76,6 +81,11 @@ export default {
     color: #DCDCDD;
     font-size: 20px;
   }
+  .q-list {
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+  }
   h1  {
     font-size: 35px;
     align-self: center;
@@ -88,18 +98,20 @@ export default {
     list-style: none;
     padding: 5px;
     border: solid 2px;
-    border-color: white;
+    border-color: grey;
     border-radius: 5px;
     margin: 5px;
   }
+
+  li .correct  {
+    background-color: green;
+  }
+
   input {
     background-color: white;
     color: #454B66;
   }
-  .q-list {
-    display: flex;
-    justify-content: space-between;
-  }
+
   .result {
     align-content: stretch;
   }
