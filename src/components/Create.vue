@@ -1,16 +1,18 @@
 <template lang="html">
   <div>
-  <h1>Create your Quiz!!</h1>
+  <h2>Create your Quiz!!</h2>
   <form v-on:submit.prevent="emitCreateQuiz">
     <label for="num-of-questions">Number of questions:</label>
-    <input id="number" v-model="quiz.number" type="number" name="num-of-questions" min="1" max="50">
+    <input v-model="quiz.number" type="number" name="num-of-questions" min="1" max="10" required>
     <label for="category">Category:</label>
-    <select v-model="quiz.category" >
-      <option value="0">Select questions from All Categories</option>
+    <select v-model="quiz.category" required>
+      <option value="0">Pot Luck! (selects from all categories)</option>
       <option v-for="(category) in categories" :value="category.id">{{category.name}}</option>
       </select>
       <input type="submit" value="Create Quiz">
   </form>
+  <h5>Please Note: if your quiz does not generate it may be because there are not enough questions available in
+  your chosen category. Try reducing the number of questions or select a different category</h5>
     </div>
 </template>
 

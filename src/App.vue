@@ -1,10 +1,12 @@
 <template lang="html">
-  <div>
-    <h2>Quiz</h2>
+  <div id="app">
+    <h1>Quiz Generator</h1>
     <create :categories="categories"></create>
-  <div class="main">
+  <div class="q-list">
   <question-list :questions="questions"></question-list>
+  <div class="result">
   <result :result="finalResult"></result>
+  </div>
 </div>
 </div>
 </template>
@@ -59,16 +61,46 @@ export default {
       fetch(url)
       .then(res => res.json())
       .then(data => this.questions = data.results)
-      console.log(url);
     }
   }
 
 }
 </script>
 
-<style lang="css" scoped>
-  .main {
+<style lang="css" >
+  * {
+    margin-top: 0px;
+    background-color: #454B66;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: lighter;
+    color: #DCDCDD;
+    font-size: 20px;
+  }
+  h1  {
+    font-size: 35px;
+    align-self: center;
+    font-weight: normal;
+  }
+  h2  {
+    font-size: 38px;
+  }
+  li {
+    list-style: none;
+    padding: 5px;
+    border: solid 2px;
+    border-color: white;
+    border-radius: 5px;
+    margin: 5px;
+  }
+  input {
+    background-color: white;
+    color: #454B66;
+  }
+  .q-list {
     display: flex;
     justify-content: space-between;
+  }
+  .result {
+    align-content: stretch;
   }
 </style>

@@ -1,7 +1,7 @@
 <template lang="html">
 <li>
 <form v-on:submit.prevent="emitChosenAnswer">
-  <h2>{{decodeURIComponent(question.question)}}</h2>
+  <h3>{{decodeURIComponent(question.question)}}</h3>
   <input type="radio" v-model="selectedAnswer" value="True">True
   <input type="radio" v-model="selectedAnswer" value="False">False
 <input v-on:click="handleClick" type="submit" value="submit">
@@ -38,4 +38,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.correct {
+  background-color: green;
+}
+
+.incorrect  {
+  color: red;
+}
 </style>
